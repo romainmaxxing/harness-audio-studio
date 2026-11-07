@@ -869,7 +869,7 @@ export function mount(el, ctx) {
       ...(st.devices.some((d) => d.label)
         ? st.devices.map((d, i) => h("option", { value: d.deviceId, selected: d.deviceId === st.mic }, d.label || T.mic(i + 1)))
         : [h("option", { value: "" }, T.defaultMic)])),
-      st.stream ? null : h("button", { class: "ui-btn ui-outline ui-sm", onclick: () => openStream().catch(showErr) }, T.enableMic),
+      st.stream ? "" : h("button", { class: "ui-btn ui-outline ui-sm", onclick: () => openStream().catch(showErr) }, T.enableMic),
       h("label", { class: "ui-row", style: "gap:6px" },
         h("input", { type: "checkbox", class: "ui-check", checked: !st.rawMic, disabled: live,
           onchange: (e) => { st.rawMic = !e.target.checked; localStorage.setItem(LS.raw, st.rawMic ? "1" : "0"); if (st.stream) reopen(); } }),
